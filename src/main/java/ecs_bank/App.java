@@ -1,4 +1,4 @@
-package org.ecsthesis;
+package ecs_bank;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

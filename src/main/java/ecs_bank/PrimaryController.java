@@ -1,4 +1,4 @@
-package org.ecsthesis;
+package ecs_bank;
 
 public class PrimaryController {
 
