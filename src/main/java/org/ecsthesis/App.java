@@ -10,24 +10,15 @@ import java.io.IOException;
 
 public class App extends Application {
 
-    private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 1024, 720);
+        Parent root = FXMLLoader.load(App.class.getResource("primary.fxml"));
         stage.setTitle("OOP - Thesis");
-        stage.setScene(scene);
+        stage.setScene(new Scene(root, 1024, 720));
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
 
     public static void main(String[] args) {
         launch();
