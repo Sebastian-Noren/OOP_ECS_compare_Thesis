@@ -1,5 +1,7 @@
 package ecs_bank;
 
+import ecs_bank.models.accounts.PrivateAccount;
+import ecs_bank.models.accounts.Transaction;
 import javafx.fxml.Initializable;
 
 import java.net.URL;

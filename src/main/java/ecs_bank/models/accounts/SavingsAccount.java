@@ -1,4 +1,4 @@
-package ecs_bank;
+package ecs_bank.models.accounts;
 
 import java.util.ArrayList;
 

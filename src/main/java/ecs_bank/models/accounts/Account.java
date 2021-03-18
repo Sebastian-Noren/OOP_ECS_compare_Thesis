@@ -1,4 +1,4 @@
-package ecs_bank;
+package ecs_bank.models.accounts;
 
 import java.util.ArrayList;
 
@@ -23,8 +23,8 @@ public abstract class Account {
     public float getSaldo() {
         float saldo = 0;
 
-        for (int i = 0; i < transactions.size(); i++) {
-            saldo += transactions.get(i).getAmount();
+        for (Transaction transaction : transactions) {
+            saldo += transaction.getAmount();
         }
         return saldo;
     }
