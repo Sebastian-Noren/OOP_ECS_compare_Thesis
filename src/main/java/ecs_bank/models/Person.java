@@ -6,10 +6,11 @@ public class Person {
     private String ssn;
     private Address address;
 
-    public Person (String firstName, String lastName, String ssn){
+    public Person(String firstName, String lastName, String ssn, Address address) {
         this.firstName = firstName;
-        this.lastName  = lastName;
-        this.ssn       = ssn;
+        this.lastName = lastName;
+        this.ssn = ssn;
+        this.address = address;
     }
 
     public String getFirstName() {
