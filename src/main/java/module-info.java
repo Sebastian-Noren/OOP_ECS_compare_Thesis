@@ -4,4 +4,5 @@ module org.ecsthesis {
 
     opens ecs_bank to javafx.fxml;
     exports ecs_bank;
+    exports ecs_bank.controller;
 }
