@@ -1,46 +1,51 @@
 package ecs_bank.models;
 
+import ecs_bank.models.accounts.PrivateAccount;
+import ecs_bank.models.accounts.SavingsAccount;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Customer extends Person {
-    private String registrationDate;
-   // private PrivateAccount privateAccount;
-   // private List<SavingsAccount> savingsAccountList;
+    private Date registrationDate;
+    private PrivateAccount privateAccount;
+    private ArrayList<SavingsAccount> savingsAccountList;
     private String phoneNumber;
 
 
-    public Customer(String firstName, String lastName, String ssn, Address address, String registrationDate, String phoneNumber) {
+    public Customer(String firstName, String lastName, String ssn, Address address, Date registrationDate, String phoneNumber, PrivateAccount privateAccount) {
         super(firstName, lastName, ssn, address);
         this.registrationDate = registrationDate;
         this.phoneNumber = phoneNumber;
-
-      // this.List<SavingsAccount> savingsAccountList = new ArrayList<>();
+        this.privateAccount = privateAccount;
+        this.savingsAccountList = new ArrayList<>();
     }
 
-    public String getRegistrationDate() {
+    public Date getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(String registrationDate) {
+    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
-    /*
-        public PrivateAccount getPrivateAccount() {
-            return privateAccount;
-        }
 
-        public void setPrivateAccount(PrivateAccount privateAccount) {
-            this.privateAccount = privateAccount;
-        }
 
-        public List<SavingsAccount> getSavingsAccountList() {
-            return savingsAccountList;
-        }
+    public PrivateAccount getPrivateAccount() {
+        return privateAccount;
+    }
 
-        public void setSavingsAccountList(List<SavingsAccount> savingsAccountList) {
-            this.savingsAccountList = savingsAccountList;
-        }
-    */
+    public void setPrivateAccount(PrivateAccount privateAccount) {
+        this.privateAccount = privateAccount;
+    }
+
+    public ArrayList<SavingsAccount> getSavingsAccountList() {
+        return savingsAccountList;
+    }
+
+    public void setSavingsAccountList(ArrayList<SavingsAccount> savingsAccountList) {
+        this.savingsAccountList = savingsAccountList;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -49,10 +54,13 @@ public class Customer extends Person {
         this.phoneNumber = phoneNumber;
     }
 
-    private void transferMoney(String fromAccount, String toAccount){
+    private void transferMoney(String fromAccount, String toAccount) {
 
     }
-    private void deleteSavingsAccount(String accountNbr){
+
+    private void deleteSavingsAccount(String accountNbr) {
 
     }
+
+
 }
