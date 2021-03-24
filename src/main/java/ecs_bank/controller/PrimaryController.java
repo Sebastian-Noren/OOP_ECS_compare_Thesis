@@ -1,5 +1,8 @@
-package ecs_bank;
+package ecs_bank.controller;
 
+import ecs_bank.App;
+import ecs_bank.AppConstants;
+import ecs_bank.DatabaseConnection;
 import ecs_bank.models.accounts.PrivateAccount;
 import ecs_bank.models.accounts.Transaction;
 import javafx.fxml.FXML;
@@ -17,27 +20,15 @@ import java.util.ResourceBundle;
 
 public class PrimaryController implements Initializable {
     @FXML
-    private TextField textInputUsername,textInputPassword;
+    public TextField textInputUsername,textInputPassword;
     @FXML
-    private AnchorPane mainScene;
+    public AnchorPane mainScene;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Transaction transaction = new Transaction("First salary",new Date(),1000);
-
-        System.out.println(transaction);
-
-
-        PrivateAccount privateAccount = new PrivateAccount("My Account", 53234,34254234,2323, new ArrayList<>());
-
-        privateAccount.deposit(transaction);
-
-        System.out.println(privateAccount.getSaldo());
-
-        privateAccount.withdraw(new Transaction("Buying toys",new Date(),-437.59));
-
-        System.out.println(privateAccount.getSaldo());
+        AppConstants.getInstance();
+        System.out.println(AppConstants.getInstance().getCustomers().get(0).getPrivateAccount().getSaldo());
     }
 
 
@@ -60,7 +51,7 @@ public class PrimaryController implements Initializable {
     }
 
     private void changeScene(String fxml) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource(fxml));
+        AnchorPane pane = FXMLLoader.load(App.class.getResource(fxml));
         mainScene.getChildren().setAll(pane);
     }
 
