@@ -1,6 +1,7 @@
 package ecs_bank;
 
 import ecs_bank.models.Address;
+import ecs_bank.models.Banker;
 import ecs_bank.models.Customer;
 import ecs_bank.models.accounts.PrivateAccount;
 import ecs_bank.models.accounts.Transaction;
@@ -50,6 +51,10 @@ public class AppConstants {
         Customer customer = new Customer("Sebastian", "Muhammed", "1993xxxx-xxxx", address,new Date(),
                 "0736-5554", privateAccount);
 
+        Banker banker = new Banker("ali","yes","190303",new Address("gatan",1,"Lund","Swe"),new Date() ,"22",
+                new PrivateAccount("hej",23,3,3,new ArrayList<>()));
+
+        customers.add(banker);
         customers.add(customer);
 
       //  DatabaseConnection.getInstance().connect();

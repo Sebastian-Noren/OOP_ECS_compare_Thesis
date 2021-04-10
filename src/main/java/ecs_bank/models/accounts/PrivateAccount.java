@@ -10,4 +10,5 @@ public class PrivateAccount extends Account{
         super(accountName, clearingNbr, accountNrb, IBAN, transactions);
     }
 
+
 }

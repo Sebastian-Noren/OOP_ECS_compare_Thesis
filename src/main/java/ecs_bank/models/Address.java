@@ -1,10 +1,15 @@
 package ecs_bank.models;
 
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Address {
     private String street;
     private int    streetNumber;
     private String city;
     private String country;
+
 
     public Address(String street, int streetNumber, String city, String country) {
         this.street = street;
@@ -13,9 +18,12 @@ public class Address {
         this.country = country;
     }
 
+
     public String getStreet() {
         return street;
     }
+
+
 
     public void setStreet(String street) {
         this.street = street;

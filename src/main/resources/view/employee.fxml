@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="680.0" prefWidth="792.0" stylesheets="@../ecs_bank/basicStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ecs_bank.controller.EmployeeController">
+   <children>
+      <BorderPane layoutX="-3.0" layoutY="-4.0" prefHeight="680.0" prefWidth="798.0">
+         <center>
+            <AnchorPane prefHeight="680.0" prefWidth="570.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tableView" layoutX="514.0" layoutY="4.0" prefHeight="672.0" prefWidth="284.0" />
+                  <VBox alignment="CENTER" prefHeight="197.0" prefWidth="193.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="51.0" prefWidth="160.0" spacing="5.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="204.0" text="Search user" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="searchField" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" promptText="Enter social security number" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="createUserBtn" mnemonicParsing="false" onAction="#searchTable" text="Search" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutY="207.0" prefHeight="115.0" prefWidth="191.0" spacing="15.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#clearTextArea" text="Clear Text Area" />
+                     </children>
+                  </VBox>
+                  <TextArea fx:id="textArea" layoutX="191.0" layoutY="4.0" prefHeight="671.0" prefWidth="323.0" />
+                  <VBox alignment="CENTER" layoutX="1.0" layoutY="371.0" prefHeight="129.0" prefWidth="191.0" spacing="15.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="163.0" prefWidth="191.0" spacing="10.0" style="-fx-border-color: gray;">
+                           <children>
+                              <Label text="Transfer money?" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
