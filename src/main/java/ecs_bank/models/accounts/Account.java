@@ -37,4 +37,14 @@ public abstract class Account {
     public void deposit(Transaction transaction) {
         this.transactions.add(transaction);
     }
+
+    @Override
+    public String toString() {
+        return
+                "Account Name: " + accountName + '\n' +
+                "Clearing Number: " + clearingNbr +  '\n' +
+                "Account Number: " + accountNrb + '\n' +
+                "IBAN Number: " + IBAN + '\n' +
+                "== Transaction(s) == \n " + transactions.toString() + '\n';
+    }
 }

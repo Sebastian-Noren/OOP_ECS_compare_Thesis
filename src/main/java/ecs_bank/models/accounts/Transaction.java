@@ -30,11 +30,10 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" +
-                "description='" + description + '\'' +
-                ", transactionDate=" + transactionDate +
-                ", amount=" + amount +
-                '}';
+        return "Description: " + description + '\n' +
+                "Transaction Date: " + transactionDate + '\n' +
+                "Amount: " + amount;
+
     }
 }
 
