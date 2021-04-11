@@ -45,6 +45,6 @@ public abstract class Account {
                 "Clearing Number: " + clearingNbr +  '\n' +
                 "Account Number: " + accountNrb + '\n' +
                 "IBAN Number: " + IBAN + '\n' +
-                "== Transaction(s) == \n " + transactions.toString() + '\n';
+                "========= Transaction(s) ========== \n " + transactions.toString() + '\n';
     }
 }

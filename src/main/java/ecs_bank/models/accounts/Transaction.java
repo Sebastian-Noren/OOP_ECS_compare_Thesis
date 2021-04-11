@@ -32,7 +32,7 @@ public class Transaction {
     public String toString() {
         return "Description: " + description + '\n' +
                 "Transaction Date: " + transactionDate + '\n' +
-                "Amount: " + amount;
+                "Amount: " + amount + "\n------------------------------------------------------\n";
 
     }
 }
