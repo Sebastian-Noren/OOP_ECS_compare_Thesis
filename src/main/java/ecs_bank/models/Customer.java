@@ -11,14 +11,16 @@ public class Customer extends Person {
     private PrivateAccount privateAccount;
     private ArrayList<SavingsAccount> savingsAccountList;
     private String phoneNumber;
+    private String passWord;
 
 
-    public Customer(String firstName, String lastName, String ssn, Address address, Date registrationDate, String phoneNumber, PrivateAccount privateAccount) {
+    public Customer(String firstName, String lastName, String ssn, Address address, Date registrationDate, String phoneNumber, String password, PrivateAccount privateAccount) {
         super(firstName, lastName, ssn, address);
         this.registrationDate = registrationDate;
         this.phoneNumber = phoneNumber;
         this.privateAccount = privateAccount;
         this.savingsAccountList = new ArrayList<>();
+        this.passWord = password;
     }
 
     public Date getRegistrationDate() {
@@ -56,6 +58,14 @@ public class Customer extends Person {
 
     private void transferMoney(String fromAccount, String toAccount) {
 
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     private void deleteSavingsAccount(String accountNbr) {

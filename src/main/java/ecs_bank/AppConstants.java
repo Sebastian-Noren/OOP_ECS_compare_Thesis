@@ -8,6 +8,7 @@ import ecs_bank.models.accounts.Transaction;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * @author Sebastian Norén <s.norén@gmail.com>
@@ -17,6 +18,7 @@ public class AppConstants {
 
     public static AppConstants instance = null;
     private ArrayList<Customer> customers;
+    private HashMap<String,Customer> customerMap;
 
 
 
@@ -29,7 +31,12 @@ public class AppConstants {
 
     public AppConstants() {
         customers = new ArrayList<>();
+        customerMap = new HashMap<>();
         initTest();
+    }
+
+    public HashMap<String, Customer> getCustomerMap() {
+        return customerMap;
     }
 
     public ArrayList<Customer> getCustomers() {
@@ -46,16 +53,22 @@ public class AppConstants {
         System.out.println(privateAccount.getSaldo());
 
 
-        Address address = new Address("Korsvagen",5,"Mamlut","Swedan");
+        Address address = new Address("Korsvagen",5,24343,"Mamlut","Swedan");
 
         Customer customer = new Customer("Sebastian", "Muhammed", "1993xxxx-xxxx", address,new Date(),
-                "0736-5554", privateAccount);
+                "0736-5554", "1234", privateAccount);
 
-        Banker banker = new Banker("ali","yes","190303",new Address("gatan",1,"Lund","Swe"),new Date() ,"22",
+        customerMap.put(customer.getSsn(),customer);
+
+        Banker banker = new Banker("ali","yes","190303",
+                new Address("gatan",1,43545,"Lund","Swe"),new Date() ,"22", "1234",
                 new PrivateAccount("hej",23,3,3,new ArrayList<>()));
 
         customers.add(banker);
         customers.add(customer);
+
+        customerMap.put(customer.getSsn(),customer);
+        customerMap.put(banker.getSsn(),banker);
 
       //  DatabaseConnection.getInstance().connect();
       //  System.out.println(DatabaseConnection.getInstance().getHashPassword("sebastian"));
