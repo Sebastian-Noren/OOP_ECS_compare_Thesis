@@ -8,6 +8,8 @@ import ecs_bank.models.Banker;
 import ecs_bank.models.Customer;
 import ecs_bank.models.accounts.PrivateAccount;
 import ecs_bank.models.accounts.Transaction;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,15 +28,24 @@ public class EmployeeController implements Initializable {
     @FXML
     private TableView tableView;
     @FXML
-    private TextArea textArea;
+    private TextArea textArea, statusArea;
     @FXML
     private TextField searchField;
+
+    //information for registration
+    @FXML
+    private TextField firstName,lastName,ssn,phoneNumber,country,city,street,
+            streetNumber,zipcode,accountName,clearingNumber,accountNumber,IBANNumber,password;
+
+     @FXML
+    private Button createCustomerBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeTable();
         tableOnClick();
         insertUsersToTable();
+        bindTextFieldsToCreateBtn();
     }
 
     public void tableOnClick() {
@@ -118,9 +129,64 @@ public class EmployeeController implements Initializable {
     }
 
     public void insertUsersToTable() {
+        //clear table so one do not load in same users again - used for when creating new users and displaying them with old data
+        tableView.getItems().clear();
         for (Customer customer : AppConstants.getInstance().getCustomers()) {
             tableView.getItems().add(customer);
         }
+
+    }
+
+    public void addCustomer(){
+        //Address information
+        Address address = new Address(street.getText(),Integer.parseInt(streetNumber.getText()),Integer.parseInt(zipcode.getText()),city.getText(),country.getText());
+       //Private account information
+        PrivateAccount privateAccount = new PrivateAccount(accountName.getText(),Integer.parseInt(clearingNumber.getText()),Integer.parseInt(accountNumber.getText()),Integer.parseInt(IBANNumber.getText()), new ArrayList<>());
+        //Optional savings account
+        Customer customer = new Customer(firstName.getText(), lastName.getText(), ssn.getText(), address,new Date(),
+                phoneNumber.getText(), password.getText(), privateAccount);
+
+
+        AppConstants.getInstance().getCustomerMap().put(customer.getSsn(),customer);
+        
+        AppConstants.getInstance().getCustomers().add(customer);
+        //clearFields
+        clearCustomerFields();
+        statusArea.appendText("The user: " + firstName.getText() + " was successfully created! ");
+    }
+    public void clearCustomerFields(){
+        firstName.clear();
+        lastName.clear();
+        ssn.clear();
+        phoneNumber.clear();
+        country.clear();
+        city.clear();
+        street.clear();
+         streetNumber.clear();
+        zipcode.clear();
+         accountName.clear();
+        clearingNumber.clear();
+        accountNumber.clear();
+        IBANNumber.clear();
+        password.clear();
+    }
+    public void bindTextFieldsToCreateBtn(){
+        createCustomerBtn.disableProperty().bind(
+                Bindings.isEmpty(firstName.textProperty())
+                .or(Bindings.isEmpty(lastName.textProperty()))
+                .or(Bindings.isEmpty(ssn.textProperty()))
+                .or(Bindings.isEmpty(phoneNumber.textProperty()))
+                .or(Bindings.isEmpty(country.textProperty()))
+                .or(Bindings.isEmpty(city.textProperty()))
+                .or(Bindings.isEmpty(street.textProperty()))
+                .or(Bindings.isEmpty(streetNumber.textProperty()))
+                .or(Bindings.isEmpty(zipcode.textProperty()))
+                .or(Bindings.isEmpty(accountName.textProperty()))
+                .or(Bindings.isEmpty(clearingNumber.textProperty()))
+                .or(Bindings.isEmpty(accountNumber.textProperty()))
+                .or(Bindings.isEmpty(IBANNumber.textProperty()))
+                .or(Bindings.isEmpty(password.textProperty())));
+
     }
 
     public void clearTable() {
