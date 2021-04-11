@@ -1,4 +1,5 @@
 package ecs_bank.controller;
+
 import ecs_bank.AppConstants;
 import ecs_bank.models.Address;
 
@@ -36,7 +37,7 @@ public class EmployeeController implements Initializable {
         insertUsersToTable();
     }
 
-    public void tableOnClick(){
+    public void tableOnClick() {
         tableView.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -55,7 +56,7 @@ public class EmployeeController implements Initializable {
         });
     }
 
-    public void initializeTable(){
+    public void initializeTable() {
         //Set table rows
         //first name
         TableColumn firstNameColumn = new TableColumn("First Name"); //How it should be presented in table
@@ -67,65 +68,68 @@ public class EmployeeController implements Initializable {
         TableColumn ssn = new TableColumn("SSN");
         ssn.setCellValueFactory(new PropertyValueFactory<>("ssn"));
         //insert into table
-        tableView.getColumns().addAll(firstNameColumn,lastNameColumn,ssn);
+        tableView.getColumns().addAll(firstNameColumn, lastNameColumn, ssn);
     }
 
-    public void searchByClick(int i){
+    public void searchByClick(int i) {
         clearTextArea();
         Customer customer = AppConstants.getInstance().getCustomers().get(i);
 
-        textArea.appendText("First Name: " + customer.getFirstName() +"\n");
-        textArea.appendText("Last Name: "  + customer.getLastName() +"\n");
-        textArea.appendText("Social Security Number: " + customer.getSsn() +"\n");
-        textArea.appendText("Street: " + customer.getAddress().getStreet() +"\n");
-        textArea.appendText("Street Number: " + customer.getAddress().getStreetNumber() +"\n");
-        textArea.appendText("City: " + customer.getAddress().getCity() +"\n");
-        textArea.appendText("Country: " + customer.getAddress().getCountry() +"\n");
-        textArea.appendText("Registration Date: " + customer.getRegistrationDate() +"\n");
-        textArea.appendText("Phone Number: " + customer.getPhoneNumber() +"\n");
+        textArea.appendText("First Name: " + customer.getFirstName() + "\n");
+        textArea.appendText("Last Name: " + customer.getLastName() + "\n");
+        textArea.appendText("Social Security Number: " + customer.getSsn() + "\n");
+        textArea.appendText("Street: " + customer.getAddress().getStreet() + "\n");
+        textArea.appendText("Street Number: " + customer.getAddress().getStreetNumber() + "\n");
+        textArea.appendText("City: " + customer.getAddress().getCity() + "\n");
+        textArea.appendText("Country: " + customer.getAddress().getCountry() + "\n");
+        textArea.appendText("Registration Date: " + customer.getRegistrationDate() + "\n");
+        textArea.appendText("Phone Number: " + customer.getPhoneNumber() + "\n");
         textArea.appendText("========= Private Account ========= \n");
         textArea.appendText(customer.getPrivateAccount().toString());
         textArea.appendText("========= Saving Account(s) ========= \n");
-        textArea.appendText(customer.getSavingsAccountList().toString() +"\n");
+        textArea.appendText(customer.getSavingsAccountList().toString() + "\n");
 
     }
-    public void searchTable(){
+
+    public void searchTable() {
         clearTextArea();
-        String reqSSN = searchField.getText();
-        for(Customer customers: AppConstants.getInstance().getCustomers()){
-            if(reqSSN.equals(customers.getSsn())){
-                textArea.appendText("First Name: " + customers.getFirstName() +"\n");
-                textArea.appendText("Last Name: "  + customers.getLastName() +"\n");
-                textArea.appendText("Social Security Number: " + customers.getSsn() +"\n");
-                textArea.appendText("Street: " + customers.getAddress().getStreet() +"\n");
-                textArea.appendText("Street Number: " + customers.getAddress().getStreetNumber() +"\n");
-                textArea.appendText("City: " + customers.getAddress().getCity() +"\n");
-                textArea.appendText("Country: " + customers.getAddress().getCountry() +"\n");
-                textArea.appendText("Registration Date: " + customers.getRegistrationDate() +"\n");
-                textArea.appendText("Phone Number: " + customers.getPhoneNumber() +"\n");
-                textArea.appendText("========= Private Account ========= \n");
-                textArea.appendText(customers.getPrivateAccount().toString());
-                textArea.appendText("========= Saving Account(s) ========= \n");
-                textArea.appendText(customers.getSavingsAccountList().toString() +"\n");
-                return;
-            }
+        String reqSSN = searchField.getText().trim();
+
+        Customer customer = AppConstants.getInstance().getCustomerMap().get(reqSSN);
+
+        if (customer != null) {
+            textArea.appendText("First Name: " + customer.getFirstName() + "\n");
+            textArea.appendText("Last Name: " + customer.getLastName() + "\n");
+            textArea.appendText("Social Security Number: " + customer.getSsn() + "\n");
+            textArea.appendText("Street: " + customer.getAddress().getStreet() + "\n");
+            textArea.appendText("Street Number: " + customer.getAddress().getStreetNumber() + "\n");
+            textArea.appendText("City: " + customer.getAddress().getCity() + "\n");
+            textArea.appendText("Country: " + customer.getAddress().getCountry() + "\n");
+            textArea.appendText("Registration Date: " + customer.getRegistrationDate() + "\n");
+            textArea.appendText("Phone Number: " + customer.getPhoneNumber() + "\n");
+            textArea.appendText("========= Private Account ========= \n");
+            textArea.appendText(customer.getPrivateAccount().toString());
+            textArea.appendText("========= Saving Account(s) ========= \n");
+            textArea.appendText(customer.getSavingsAccountList().toString() + "\n");
+            return;
         }
+
         textArea.setText("THERE IS NO USER WITH THAT SSN! TRY AGAIN");
     }
 
-    public void insertUsersToTable(){
-        for(Customer customer :  AppConstants.getInstance().getCustomers()){
+    public void insertUsersToTable() {
+        for (Customer customer : AppConstants.getInstance().getCustomers()) {
             tableView.getItems().add(customer);
         }
     }
 
-    public void clearTable(){
+    public void clearTable() {
         tableView.getItems().clear();
     }
-    public void clearTextArea(){
+
+    public void clearTextArea() {
         textArea.clear();
     }
-
 
 
 }

@@ -6,50 +6,49 @@ import javafx.beans.property.StringProperty;
 
 public class Address {
     private String street;
-    private int    streetNumber;
+    private int streetNumber;
+    private int zipCode;
     private String city;
     private String country;
 
 
-    public Address(String street, int streetNumber, String city, String country) {
+    public Address(String street, int streetNumber, int zipCode, String city, String country) {
         this.street = street;
         this.streetNumber = streetNumber;
+        this.zipCode = zipCode;
         this.city = city;
         this.country = country;
     }
 
 
-    public String getStreet() {
-        return street;
+    public int getZipCode() {
+        return zipCode;
     }
 
-
-
-    public void setStreet(String street) {
-        this.street = street;
+    public String getStreet() {
+        return street;
     }
 
     public int getStreetNumber() {
         return streetNumber;
     }
 
-    public void setStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
-    }
-
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", streetNumber=" + streetNumber +
+                ", zipCode=" + zipCode +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                '}';
     }
 }
