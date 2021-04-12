@@ -146,11 +146,9 @@ public class EmployeeController implements Initializable {
         Customer customer = new Customer(firstName.getText(), lastName.getText(), ssn.getText(), address,new Date(),
                 phoneNumber.getText(), password.getText(), privateAccount);
 
-
         AppConstants.getInstance().getCustomerMap().put(customer.getSsn(),customer);
-        
         AppConstants.getInstance().getCustomers().add(customer);
-        //clearFields
+
         clearCustomerFields();
         statusArea.appendText("The user: " + firstName.getText() + " was successfully created! ");
     }

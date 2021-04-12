@@ -20,6 +20,10 @@ public abstract class Account {
         this.transactions = transactions;
     }
 
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
     public float getSaldo() {
         float saldo = 0;
 
@@ -36,6 +40,26 @@ public abstract class Account {
 
     public void deposit(Transaction transaction) {
         this.transactions.add(transaction);
+    }
+
+    public String printTransactions(){
+        return transactions.toString();
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public int getClearingNbr() {
+        return clearingNbr;
+    }
+
+    public int getAccountNrb() {
+        return accountNrb;
+    }
+
+    public int getIBAN() {
+        return IBAN;
     }
 
     @Override
