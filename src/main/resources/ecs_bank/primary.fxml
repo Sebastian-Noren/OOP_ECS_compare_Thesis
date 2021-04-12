@@ -46,8 +46,8 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <TextField fx:id="textInputUsername" promptText="username" />
-            <TextField fx:id="textInputPassword" promptText="Password" />
+            <TextField fx:id="textInputUsername" promptText="SSN (username)" />
+            <TextField fx:id="textInputPassword" promptText="password" />
             <HBox prefHeight="25.0" prefWidth="211.0" spacing="5.0">
                <children>
                   <Button fx:id="login1" mnemonicParsing="false" onAction="#login" text="login" />

@@ -3,6 +3,7 @@ package ecs_bank;
 import ecs_bank.models.Address;
 import ecs_bank.models.Banker;
 import ecs_bank.models.Customer;
+import ecs_bank.models.accounts.Account;
 import ecs_bank.models.accounts.PrivateAccount;
 import ecs_bank.models.accounts.Transaction;
 
@@ -19,7 +20,7 @@ public class AppConstants {
     public static AppConstants instance = null;
     private ArrayList<Customer> customers;
     private HashMap<String,Customer> customerMap;
-
+    private Customer loggedInUser;
 
 
     public static AppConstants getInstance() {
@@ -33,6 +34,14 @@ public class AppConstants {
         customers = new ArrayList<>();
         customerMap = new HashMap<>();
         initTest();
+    }
+
+    public Customer getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public void setLoggedInUser(Customer loggedInUser) {
+        this.loggedInUser = loggedInUser;
     }
 
     public HashMap<String, Customer> getCustomerMap() {
@@ -55,10 +64,9 @@ public class AppConstants {
 
         Address address = new Address("Korsvagen",5,24343,"Mamlut","Swedan");
 
-        Customer customer = new Customer("Sebastian", "Muhammed", "1993xxxx-xxxx", address,new Date(),
-                "0736-5554", "1234", privateAccount);
+        Customer customer = new Customer("Sebastian", "Muhammed", "1", address,new Date(),
+                "0736-5554", "1", privateAccount);
 
-        customerMap.put(customer.getSsn(),customer);
 
         Banker banker = new Banker("ali","yes","190303",
                 new Address("gatan",1,43545,"Lund","Swe"),new Date() ,"22", "1234",

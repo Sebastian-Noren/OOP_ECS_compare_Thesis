@@ -1,6 +1,9 @@
 package ecs_bank.controller;
 
 import ecs_bank.AppConstants;
+import ecs_bank.models.Admin;
+import ecs_bank.models.Banker;
+import ecs_bank.models.Customer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -47,13 +50,27 @@ public class PrimaryController implements Initializable {
             System.out.println("One or both fields are not filled!");
             return;
         }
-        clearTextFields();
-        //========= validate user via database ========
 
-       //==============================================
-        //Ex. success of a employee
-        loadScene("employee.fxml");
-       // employeeOptions();
+        //========= validate user ========
+        for(Customer customer: AppConstants.getInstance().getCustomers()){
+            if (textInputUsername.getText().equals(customer.getSsn())){
+                if(textInputPassword.getText().equals(customer.getPassWord())){
+                    //current logged in user set
+                    AppConstants.getInstance().setLoggedInUser(customer);
+                    //validated
+                   if( customer instanceof Banker){
+                        //go to employee
+                       loadScene("employee.fxml");
+                    }else if (customer instanceof Admin){
+                       //go to employee with more functionality or same as employee
+                       loadScene("employee.fxml");
+                   }else{
+                       loadScene("customer.fxml");
+                   }
+                }
+            }
+        }
+        clearTextFields();
     }
 
     public void register() throws IOException{
