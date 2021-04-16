@@ -2,7 +2,6 @@ package ecs_bank.controller;
 
 import ecs_bank.AppConstants;
 import ecs_bank.models.Customer;
-import ecs_bank.models.accounts.PrivateAccount;
 import ecs_bank.models.accounts.SavingsAccount;
 import ecs_bank.models.accounts.Transaction;
 import javafx.beans.binding.Bindings;
@@ -15,8 +14,8 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -72,15 +71,15 @@ public class CustomerController implements Initializable {
         int  withdrawal = Integer.parseInt(withdrawField.getText());
         withdrawal *= -1;
 
-        Transaction transaction = new Transaction("withdrawal",new Date(),withdrawal);
-        AppConstants.getInstance().getLoggedInUser().getPrivateAccount().withdraw(transaction);
+        Transaction transaction = new Transaction("withdrawal", LocalDate.now(),withdrawal);
+        AppConstants.getInstance().getLoggedInUser().getPrivateAccount().addTransaction(transaction);
         writeToTextArea("You successfully withdrew: " + withdrawField.getText() + " kr.");
     }
 
     public void depositMoney(){
         clearTextArea();
-        Transaction transaction = new Transaction("Deposit",new Date(),Double.parseDouble(depositField.getText()));
-        AppConstants.getInstance().getLoggedInUser().getPrivateAccount().withdraw(transaction);
+        Transaction transaction = new Transaction("Deposit",LocalDate.now(),Double.parseDouble(depositField.getText()));
+        AppConstants.getInstance().getLoggedInUser().getPrivateAccount().addTransaction(transaction);
         writeToTextArea("You successfully deposited: " + depositField.getText() + " kr.");
     }
 

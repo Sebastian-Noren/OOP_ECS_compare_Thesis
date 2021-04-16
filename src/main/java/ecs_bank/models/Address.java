@@ -1,9 +1,6 @@
 package ecs_bank.models;
 
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 public class Address {
     private String street;
     private int streetNumber;

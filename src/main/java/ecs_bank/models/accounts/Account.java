@@ -33,13 +33,9 @@ public abstract class Account {
         return saldo;
     }
 
-    public void withdraw(Transaction transaction) {
+    public void addTransaction(Transaction transaction) {
         this.transactions.add(transaction);
 
-    }
-
-    public void deposit(Transaction transaction) {
-        this.transactions.add(transaction);
     }
 
     public String printTransactions(){

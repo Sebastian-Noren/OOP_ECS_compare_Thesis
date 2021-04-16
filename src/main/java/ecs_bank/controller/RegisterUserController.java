@@ -13,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -50,7 +51,7 @@ public class RegisterUserController implements Initializable {
         //Private account information
         PrivateAccount privateAccount = new PrivateAccount(privateAccountName.getText(),Integer.parseInt(privateClearingNumber.getText()),Integer.parseInt(privateAccountNumber.getText()),Integer.parseInt(privateIBANNumber.getText()), new ArrayList<>());
         //Optional savings account
-        Customer customer = new Customer(firstName.getText(), lastName.getText(), ssn.getText(), address,new Date(),
+        Customer customer = new Customer(firstName.getText(), lastName.getText(), ssn.getText(), address, LocalDate.now(),
                 phoneNumber.getText(), password.getText(), privateAccount);
 
         AppConstants.getInstance().getCustomerMap().put(customer.getSsn(),customer);
