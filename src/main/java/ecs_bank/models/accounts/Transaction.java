@@ -1,5 +1,6 @@
 package ecs_bank.models.accounts;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -7,10 +8,10 @@ import java.util.Date;
  */
 public class Transaction {
     private String description;
-    private Date transactionDate;
+    private LocalDate transactionDate;
     private double amount;
 
-    public Transaction(String description, Date transactionDate, double amount) {
+    public Transaction(String description, LocalDate transactionDate, double amount) {
         this.description = description;
         this.transactionDate = transactionDate;
         this.amount = amount;
@@ -20,7 +21,7 @@ public class Transaction {
         return description;
     }
 
-    public Date getTransactionDate() {
+    public LocalDate getTransactionDate() {
         return transactionDate;
     }
 

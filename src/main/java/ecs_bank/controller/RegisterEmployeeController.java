@@ -14,6 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -49,7 +50,7 @@ public class RegisterEmployeeController implements Initializable {
         } else if(bankerCheckbox.isSelected()){
             Banker banker = new Banker(firstName.getText(),lastName.getText(),ssn.getText(),
                     new Address(street.getText(),Integer.parseInt(streetNumber.getText()),Integer.parseInt(zipcode.getText()),
-                            city.getText(),country.getText()),new Date() ,phoneNumber.getText(), password.getText(),
+                            city.getText(),country.getText()), LocalDate.now(),phoneNumber.getText(), password.getText(),
                     new PrivateAccount(privateAccountName.getText(),Integer.parseInt(privateClearingNumber.getText()),Integer.parseInt(privateAccountNumber.getText()),
                             Integer.parseInt(privateIBANNumber.getText()),new ArrayList<>()));
 
@@ -60,7 +61,7 @@ public class RegisterEmployeeController implements Initializable {
         } else if(adminCheckbox.isSelected()){
             Admin admin = new Admin(firstName.getText(),lastName.getText(),ssn.getText(),
                     new Address(street.getText(),Integer.parseInt(streetNumber.getText()),Integer.parseInt(zipcode.getText()),
-                            city.getText(),country.getText()),new Date() ,phoneNumber.getText(), password.getText(),
+                            city.getText(),country.getText()),LocalDate.now() ,phoneNumber.getText(), password.getText(),
                     new PrivateAccount(privateAccountName.getText(),Integer.parseInt(privateClearingNumber.getText()),Integer.parseInt(privateAccountNumber.getText()),
                             Integer.parseInt(privateIBANNumber.getText()),new ArrayList<>()));
 

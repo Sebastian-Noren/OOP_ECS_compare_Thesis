@@ -3,12 +3,11 @@ package ecs_bank;
 import ecs_bank.models.Address;
 import ecs_bank.models.Banker;
 import ecs_bank.models.Customer;
-import ecs_bank.models.accounts.Account;
 import ecs_bank.models.accounts.PrivateAccount;
 import ecs_bank.models.accounts.Transaction;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -53,23 +52,23 @@ public class AppConstants {
     }
 
     private void initTest(){
-        Transaction transaction = new Transaction("First salary",new Date(),1000);
+        Transaction transaction = new Transaction("First salary",LocalDate.now(),1000);
         System.out.println(transaction);
         PrivateAccount privateAccount = new PrivateAccount("My Account", 53234,34254234,2323, new ArrayList<>());
-        privateAccount.deposit(transaction);
+        privateAccount.addTransaction(transaction);
         System.out.println(privateAccount.getSaldo());
-        privateAccount.withdraw(new Transaction("Buying toys",new Date(),-437.59));
+        privateAccount.addTransaction(new Transaction("Buying toys", LocalDate.now(),-437.59));
         System.out.println(privateAccount.getSaldo());
 
 
         Address address = new Address("Korsvagen",5,24343,"Mamlut","Swedan");
 
-        Customer customer = new Customer("Sebastian", "Muhammed", "1", address,new Date(),
+        Customer customer = new Customer("Sebastian", "Muhammed", "1", address,LocalDate.now(),
                 "0736-5554", "1", privateAccount);
 
 
         Banker banker = new Banker("ali","yes","190303",
-                new Address("gatan",1,43545,"Lund","Swe"),new Date() ,"22", "1234",
+                new Address("gatan",1,43545,"Lund","Swe"),LocalDate.now() ,"22", "1234",
                 new PrivateAccount("hej",23,3,3,new ArrayList<>()));
 
         customers.add(banker);

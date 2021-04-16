@@ -20,6 +20,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -143,7 +144,7 @@ public class EmployeeController implements Initializable {
        //Private account information
         PrivateAccount privateAccount = new PrivateAccount(accountName.getText(),Integer.parseInt(clearingNumber.getText()),Integer.parseInt(accountNumber.getText()),Integer.parseInt(IBANNumber.getText()), new ArrayList<>());
         //Optional savings account
-        Customer customer = new Customer(firstName.getText(), lastName.getText(), ssn.getText(), address,new Date(),
+        Customer customer = new Customer(firstName.getText(), lastName.getText(), ssn.getText(), address, LocalDate.now(),
                 phoneNumber.getText(), password.getText(), privateAccount);
 
         AppConstants.getInstance().getCustomerMap().put(customer.getSsn(),customer);
