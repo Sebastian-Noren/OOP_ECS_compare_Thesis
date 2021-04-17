@@ -69,6 +69,16 @@ public class CustomerController implements Initializable {
         clearTextArea();
 
         int  withdrawal = Integer.parseInt(withdrawField.getText());
+
+        //check how much money we acctually have
+        float saldo = AppConstants.getInstance().getLoggedInUser().getPrivateAccount().getSaldo();
+        DecimalFormat df2 = new DecimalFormat("#.##");
+
+       if(withdrawal> saldo){
+           writeToTextArea("Error! You can't withdraw money! \nSaldo: "+df2.format(saldo)+ " kr" +"\nRequested withdrawal: " + withdrawal + " kr");
+           return;
+       }
+
         withdrawal *= -1;
 
         Transaction transaction = new Transaction("withdrawal", LocalDate.now(),withdrawal);
@@ -115,6 +125,29 @@ public class CustomerController implements Initializable {
         SavingsAccount savingsAccount = new SavingsAccount(accountName.getText(),Integer.parseInt(clearingNumber.getText()),Integer.parseInt(accountNumber.getText()),Integer.parseInt(IBANNumber.getText()),new ArrayList<>());
         AppConstants.getInstance().getLoggedInUser().getSavingsAccountList().add(savingsAccount);
         writeToTextArea("The savings account: " + accountName.getText() + " was successfully created!");
+        //clearing fiels
+        accountName.clear();
+        clearingNumber.clear();
+        accountNumber.clear();
+        IBANNumber.clear();
+    }
+
+    public void getSavingsAccounts(){
+        clearTextArea();
+        ArrayList<SavingsAccount> temp = AppConstants.getInstance().getLoggedInUser().getSavingsAccountList();
+        if(temp.size() == 0){
+            writeToTextArea("You don't have any savings account yet, create one!");
+
+        }else{
+            for(SavingsAccount x: temp){
+                writeToTextArea("Account name: " + x.getAccountName() + "\nClearing number: "+ x.getClearingNbr() +
+                        "\nAccount number: "+ x.getAccountNrb()+"\nIBAN number: "+ x.getClearingNbr() + "\nTransactions: " + x.getTransactions().toString() +
+                        "\n------------------------------------\n");
+
+            }
+        }
+
+
     }
 
     public void bindTextFieldsToCreateBtn(){
