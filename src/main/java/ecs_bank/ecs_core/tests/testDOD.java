@@ -28,7 +28,7 @@ public class testDOD {
 
         long startTime = System.nanoTime();
         for (int i = 0; i < k; i++) {
-            arr[i] = new AddressComponent("fältvägen");
+            arr[i] = new AddressComponent("gatan",1,43545,"Lund","Swe");
 
         }
 
@@ -42,7 +42,7 @@ public class testDOD {
 
         startTime = System.nanoTime();
         for (int i = 0; i < k; i++) {
-            arr[i].address = "";
+            arr[i].street = "";
         }
 
         endTime = System.nanoTime();
@@ -56,7 +56,7 @@ public class testDOD {
 
         startTime = System.nanoTime();
         for (int i = 0; i < k; i++) {
-            lol.add(new AddressComponent("fältvägen"));
+            lol.add(new AddressComponent("gatan",1,43545,"Lund","Swe"));
         }
 
         endTime = System.nanoTime();
@@ -69,7 +69,7 @@ public class testDOD {
 
         startTime = System.nanoTime();
         for (int i = 0; i < k; i++) {
-            lol.get(i).address = "";
+            lol.get(i).street = "";
         }
 
         endTime = System.nanoTime();

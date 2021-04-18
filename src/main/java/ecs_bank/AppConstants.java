@@ -1,5 +1,10 @@
 package ecs_bank;
 
+import ecs_bank.ecs_core.EntityManagerECS;
+import ecs_bank.ecs_core.components.AddressComponent;
+import ecs_bank.ecs_core.components.MemberDetailsComponent;
+import ecs_bank.ecs_core.components.PersonDetailComponent;
+import ecs_bank.ecs_core.components.PrivateAccountComponent;
 import ecs_bank.models.Address;
 import ecs_bank.models.Banker;
 import ecs_bank.models.Customer;
@@ -22,6 +27,9 @@ public class AppConstants {
     private Customer loggedInUser;
 
 
+    private HashMap<String,Integer> entityMapECS;
+
+
     public static AppConstants getInstance() {
         if (instance == null) {
             instance = new AppConstants();
@@ -32,33 +40,30 @@ public class AppConstants {
     public AppConstants() {
         customers = new ArrayList<>();
         customerMap = new HashMap<>();
+        entityMapECS = new HashMap<>();
         initTest();
     }
 
     public Customer getLoggedInUser() {
         return loggedInUser;
     }
-
     public void setLoggedInUser(Customer loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
-
     public HashMap<String, Customer> getCustomerMap() {
         return customerMap;
     }
-
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
 
     private void initTest(){
+
         Transaction transaction = new Transaction("First salary",LocalDate.now(),1000);
-        System.out.println(transaction);
         PrivateAccount privateAccount = new PrivateAccount("My Account", 53234,34254234,2323, new ArrayList<>());
         privateAccount.addTransaction(transaction);
-        System.out.println(privateAccount.getSaldo());
         privateAccount.addTransaction(new Transaction("Buying toys", LocalDate.now(),-437.59));
-        System.out.println(privateAccount.getSaldo());
+
 
 
         Address address = new Address("Korsvagen",5,24343,"Mamlut","Swedan");
@@ -77,7 +82,28 @@ public class AppConstants {
         customerMap.put(customer.getSsn(),customer);
         customerMap.put(banker.getSsn(),banker);
 
-      //  DatabaseConnection.getInstance().connect();
-      //  System.out.println(DatabaseConnection.getInstance().getHashPassword("sebastian"));
+
+
+        // ECS
+        EntityManagerECS managerECS = new EntityManagerECS();
+
+        // CREATE Entities
+        int zero = managerECS.createEntity();
+
+        // Create customer 0
+        managerECS.addComponent(zero, new PersonDetailComponent("Sebastian", "Norlen", "198xxxxx-xxxx"));
+        managerECS.addComponent(zero, new AddressComponent("Fältvägen",1,29369,"Krisitanstad","Sweden"));
+        managerECS.addComponent(zero, new MemberDetailsComponent("0736-229145","1",LocalDate.now()));
+        managerECS.addComponent(zero, new PrivateAccountComponent("Private Account",53526,354545154,35454,new ArrayList<>()));
+
+        entityMapECS.put("198xxxxx-xxxx",zero);
+
+
+        System.out.println(entityMapECS.get("198xxxxx-xxxx"));
+
+        int entity = entityMapECS.get("198xxxxx-xxxx");
+
+        System.out.println(managerECS.getComponent(entity,PersonDetailComponent.class).toString());
+
     }
 }

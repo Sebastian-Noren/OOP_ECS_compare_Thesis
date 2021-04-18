@@ -1,8 +1,6 @@
 package ecs_bank.ecs_core.systems;
 
-
-
-import ecs_bank.ecs_core.components.AccountComponent;
+import ecs_bank.ecs_core.components.PrivateAccountComponent;
 
 import java.util.ArrayList;
 
@@ -11,13 +9,13 @@ import java.util.ArrayList;
  */
 public class AccountInitSystem implements ISystemECS {
 
-    public void process(ArrayList<AccountComponent> list) {
+    public void process(ArrayList<PrivateAccountComponent> list) {
 
 
         long startTime = System.nanoTime();
 
-        for (AccountComponent accountComponent : list) {
-            accountComponent.amount = 100;
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).clearingNbr);
         }
 
         long endTime = System.nanoTime();

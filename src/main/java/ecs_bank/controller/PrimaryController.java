@@ -31,7 +31,6 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         AppConstants.getInstance();
-        System.out.println(AppConstants.getInstance().getCustomers().get(0).getPrivateAccount().getSaldo());
         //Initialize choiceBox (for register)
         choiceBoxInit();
         //disable register button
