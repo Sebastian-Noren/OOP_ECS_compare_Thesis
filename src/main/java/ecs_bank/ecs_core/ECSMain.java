@@ -1,10 +1,12 @@
 package ecs_bank.ecs_core;
 
 
-import ecs_bank.ecs_core.components.AccountComponent;
 import ecs_bank.ecs_core.components.AddressComponent;
 import ecs_bank.ecs_core.components.PersonDetailComponent;
+import ecs_bank.ecs_core.components.PrivateAccountComponent;
 import ecs_bank.ecs_core.systems.AccountInitSystem;
+
+import java.time.LocalDate;
 
 /**
  * @author Sebastian Norén <s.norén@gmail.com>
@@ -25,19 +27,19 @@ public class ECSMain {
 
         // ADD COMPONENTS
         managerECS.addComponent(zero, new PersonDetailComponent("Sebastian", "Losto", "198xxxxx-xxxx"));
-        managerECS.addComponent(zero, new AccountComponent());
-        managerECS.addComponent(zero, new AddressComponent("eriksdaln 1"));
+    //    managerECS.addComponent(zero, new PrivateAccountComponent());
+        managerECS.addComponent(zero, new AddressComponent("gatan",1,43545,"Lund","Swe"));
 
         managerECS.addComponent(one, new PersonDetailComponent("John", "Doe", "19xxxx945-xxxx"));
-        managerECS.addComponent(one, new AddressComponent("Lost 1"));
+        managerECS.addComponent(one, new AddressComponent("gatan",1,43545,"Lund","Swe"));
 
         managerECS.addComponent(two, new PersonDetailComponent("Adolf", "Bodil", "xxxx0112-31xx"));
-        managerECS.addComponent(two, new AccountComponent());
-        managerECS.addComponent(two, new AddressComponent("Didriksväg 26"));
+   //     managerECS.addComponent(two, new PrivateAccountComponent());
+        managerECS.addComponent(two, new AddressComponent("gatan",1,43545,"Lund","Swe"));
 
         managerECS.addComponent(three, new PersonDetailComponent("Arnold", "Chan", "19xxxx01-3xxx"));
-        managerECS.addComponent(three, new AccountComponent());
-        managerECS.addComponent(three, new AddressComponent("Faltobo 10"));
+   //     managerECS.addComponent(three, new PrivateAccountComponent());
+        managerECS.addComponent(three, new AddressComponent("gatan",1,43545,"Lund","Swe"));
 
 
         System.out.println(managerECS.getAllEntitiesPossessingComponent(PersonDetailComponent.class));
@@ -61,9 +63,9 @@ public class ECSMain {
 
         // SYSTEM INIT - 100 SEK on every account
         AccountInitSystem sys = new AccountInitSystem();
-        sys.process(managerECS.getAllComponentsOfType(AccountComponent.class));
-        System.out.println(managerECS.getAllComponentsOfType(AccountComponent.class));
-        managerECS.getComponent(0, AccountComponent.class).amount = 1000;
+        sys.process(managerECS.getAllComponentsOfType(PrivateAccountComponent.class));
+        System.out.println(managerECS.getAllComponentsOfType(PrivateAccountComponent.class));
+        managerECS.getComponent(0, PrivateAccountComponent.class).clearingNbr = 1000;
 
         System.out.println();
         managerECS.printEntityComponents(1);
@@ -84,19 +86,19 @@ public class ECSMain {
 
 
         managerECS.addComponent(four, new PersonDetailComponent("Sebastian", "Losto", "198xxxxx-xxxx"));
-        managerECS.addComponent(four, new AccountComponent());
-        managerECS.addComponent(four, new AddressComponent("eriksdaln 1"));
+    //    managerECS.addComponent(four, new PrivateAccountComponent());
+        managerECS.addComponent(four, new AddressComponent("gatan",1,43545,"Lund","Swe"));
 
         managerECS.addComponent(five, new PersonDetailComponent("John", "Doe", "19xxxx945-xxxx"));
-        managerECS.addComponent(five, new AddressComponent("Lost 1"));
+        managerECS.addComponent(five, new AddressComponent("gatan",1,43545,"Lund","Swe"));
 
         managerECS.addComponent(six, new PersonDetailComponent("Adolf", "Bodil", "xxxx0112-31xx"));
-        managerECS.addComponent(six, new AccountComponent());
-        managerECS.addComponent(six, new AddressComponent("Didriksväg 26"));
+    //    managerECS.addComponent(six, new PrivateAccountComponent());
+        managerECS.addComponent(six, new AddressComponent("gatan",1,43545,"Lund","Swe"));
 
         managerECS.addComponent(seven, new PersonDetailComponent("Arnold", "Chan", "19xxxx01-3xxx"));
-        managerECS.addComponent(seven, new AccountComponent());
-        managerECS.addComponent(seven, new AddressComponent("Faltobo 10"));
+    //    managerECS.addComponent(seven, new PrivateAccountComponent());
+        managerECS.addComponent(seven, new AddressComponent("gatan",1,43545,"Lund","Swe"));
 
 
     }
