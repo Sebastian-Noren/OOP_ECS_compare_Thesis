@@ -1,37 +1,35 @@
 package ecs_bank.random_generator.address;
 
+import java.security.SecureRandom;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomAddress {
-
-    private String street;
-    private int streetNumber;
-    private int zipCode;
-    private String city;
     private String country;
 
+   private StreetSource streetSource = new StreetSource();
+   private CitySource citySource = new CitySource();
+    private SecureRandom random = new SecureRandom();
+
     public RandomAddress() {
-        this.street = new StreetSource().random();
-        this.streetNumber = ThreadLocalRandom.current().nextInt(1,101);
-        this.zipCode = ThreadLocalRandom.current().nextInt(10000, 97999);
-        this.city = new CitySource().random();
+        streetSource = new StreetSource();
+        citySource = new CitySource();
         this.country = "Sweden";
     }
 
     public int getStreetNumber() {
-        return streetNumber;
+        return random.nextInt(101) + 1;
     }
 
     public String getStreet() {
-        return street;
+        return streetSource.random();
     }
 
     public int getZipCode() {
-        return zipCode;
+        return random.nextInt(97999) + 10000;
     }
 
     public String getCity() {
-        return city;
+        return citySource.random();
     }
 
     public String getCountry() {

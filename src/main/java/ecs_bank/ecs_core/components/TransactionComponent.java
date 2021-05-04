@@ -9,4 +9,10 @@ public class TransactionComponent implements IComponent{
     public String description;
     public LocalDate transactionDate;
     public double amount;
+
+    public TransactionComponent(String description, LocalDate transactionDate, double amount) {
+        this.description = description;
+        this.transactionDate = transactionDate;
+        this.amount = amount;
+    }
 }

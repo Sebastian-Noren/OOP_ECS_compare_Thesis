@@ -20,11 +20,12 @@ public abstract class Account {
         this.transactions = transactions;
     }
 
+
     public ArrayList<Transaction> getTransactions() {
         return transactions;
     }
 
-    public float getSaldo() {
+    public double getSaldo() {
         float saldo = 0;
 
         for (Transaction transaction : transactions) {
@@ -37,6 +38,7 @@ public abstract class Account {
         this.transactions.add(transaction);
 
     }
+
 
     public String printTransactions(){
         return transactions.toString();
