@@ -2,6 +2,7 @@ package ecs_bank.random_generator;
 
 import ecs_bank.models.Address;
 import ecs_bank.models.Customer;
+import ecs_bank.models.TestDataOOP;
 import ecs_bank.models.accounts.PrivateAccount;
 import ecs_bank.models.accounts.SavingsAccount;
 import ecs_bank.models.accounts.Transaction;
@@ -81,7 +82,7 @@ public class Generator {
                     randomTransaction.getAmount(chance)));
         }
 
-        Customer customer = new Customer(firstName, surname, ssn, createRandomAddress(), date,
+        TestDataOOP customer = new TestDataOOP(firstName, surname, ssn, createRandomAddress(), date,
                 createPhoneNumber(), "1", privateAccount);
 
         customer.addSavingsAccountToList(savingsAccount);

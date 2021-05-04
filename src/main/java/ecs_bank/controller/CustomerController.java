@@ -71,7 +71,7 @@ public class CustomerController implements Initializable {
         int  withdrawal = Integer.parseInt(withdrawField.getText());
 
         //check how much money we acctually have
-        float saldo = AppConstants.getInstance().getLoggedInUser().getPrivateAccount().getSaldo();
+        double saldo = AppConstants.getInstance().getLoggedInUser().getPrivateAccount().getSaldo();
         DecimalFormat df2 = new DecimalFormat("#.##");
 
        if(withdrawal> saldo){
@@ -101,7 +101,7 @@ public class CustomerController implements Initializable {
     public void getSaldo(){
         clearTextArea();
         DecimalFormat df2 = new DecimalFormat("#.##");
-        float saldo = AppConstants.getInstance().getLoggedInUser().getPrivateAccount().getSaldo();
+        double saldo = AppConstants.getInstance().getLoggedInUser().getPrivateAccount().getSaldo();
         writeToTextArea("Private account saldo: " + df2.format(saldo) + " kr");
 
     }

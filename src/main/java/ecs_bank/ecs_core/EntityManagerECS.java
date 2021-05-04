@@ -23,8 +23,8 @@ public class EntityManagerECS {
     private final Deque<Integer> ENTITY_BUFFER = new ArrayDeque<>(10);
 
 
-    public EntityManagerECS() {
-        entityList = new ArrayList<>();
+    public EntityManagerECS(int N) {
+        entityList = new ArrayList<>(N);
         componentStores = new HashMap<>();
     }
 
